@@ -6,7 +6,11 @@ FROM alpine:latest
 LABEL maintainer="Kyle Manna <kyle@kylemanna.com>"
 
 # Testing: pamtester
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
+    echo "http://mirrors.aliyun.com/alpine/edge/main/" >> /etc/apk/repositories && \
+    echo "http://mirrors.aliyun.com/alpine/edge/community/" >> /etc/apk/repositories && \
+    echo "http://mirrors.aliyun.com/alpine/edge/testing/" >> /etc/apk/repositories && \
+    apk update && \
     apk add --update openvpn iptables bash easy-rsa openvpn-auth-pam google-authenticator pamtester && \
     ln -s /usr/share/easy-rsa/easyrsa /usr/local/bin && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
@@ -24,6 +28,8 @@ VOLUME ["/etc/openvpn"]
 
 # Internally uses port 1194/udp, remap using `docker run -p 443:1194/tcp`
 EXPOSE 1194/udp
+EXPOSE 1194/tcp
+EXPOSE 2080/tcp
 
 CMD ["ovpn_run"]
 
