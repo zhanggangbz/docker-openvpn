@@ -97,4 +97,4 @@ fi
 # fi
 
 echo "Running 'openvpn ${ARGS[@]} ${USER_ARGS[@]}'"
-exec openvpn ${ARGS[@]} ${USER_ARGS[@]}
+#exec openvpn ${ARGS[@]} ${USER_ARGS[@]}
