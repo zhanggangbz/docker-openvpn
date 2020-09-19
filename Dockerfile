@@ -31,7 +31,7 @@ EXPOSE 1194/udp
 EXPOSE 1194/tcp
 EXPOSE 2080/tcp
 
-CMD ["ovpn_run"]
+# CMD ["ovpn_run"]
 
 ADD ./bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
