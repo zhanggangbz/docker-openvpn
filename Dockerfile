@@ -6,7 +6,6 @@ FROM alpine:3.5
 MAINTAINER Kyle Manna <kyle@kylemanna.com>
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
-    echo "http://mirrors.aliyun.com/alpine/edge/main/" >> /etc/apk/repositories && \
     echo "http://mirrors.aliyun.com/alpine/edge/community/" >> /etc/apk/repositories && \
     echo "http://mirrors.aliyun.com/alpine/edge/testing/" >> /etc/apk/repositories && \
     apk update && \
